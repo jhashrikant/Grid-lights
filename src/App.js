@@ -6,52 +6,16 @@ function App() {
 
 
 	const [data, setdata] = useState([
-		{
-			id: 1,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 2,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 3,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 4,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 5,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 6,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 7,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 8,
-			isClicked: false,
-			class: 'box'
-		},
-		{
-			id: 9,
-			isClicked: false,
-			class: 'box'
-		},
-	])
+		{ id: 1, isClicked: false },
+		{ id: 2, isClicked: false },
+		{ id: 3, isClicked: false },
+		{ id: 4, isClicked: false },
+		{ id: 5, isClicked: false },
+		{ id: 6, isClicked: false },
+		{ id: 7, isClicked: false },
+		{ id: 8, isClicked: false },
+		{ id: 9, isClicked: false },
+	]);
 
 	const [clickedOrder, setclickedOrder] = useState([])
 	const [resetting, setResetting] = useState(false);
@@ -77,7 +41,7 @@ function App() {
 	useEffect(() => {
 		if (resetting) {
 			let counter = 0;
-			const intervalId = setInterval(() => {
+			const timer = setInterval(() => {
 				if (counter < clickedOrder.length) {
 					const idToReset = clickedOrder[counter];
 					setdata((prevdata) =>
@@ -87,13 +51,13 @@ function App() {
 					);
 					counter++;
 				} else {
-					clearInterval(intervalId);
+					clearInterval(timer);
 					setResetting(false);
 					setclickedOrder([])
 				}
 			}, 300);
 			// Clear the interval when the component unmounts or resetting is done
-			return () => clearInterval(intervalId);
+			return () => clearInterval(timer);
 		}
 	}, [resetting, clickedOrder]);
 
