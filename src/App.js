@@ -21,10 +21,7 @@ function App() {
 	function handleclick(id) {
 		setclickedOrder((prevorder) => {
 			const updatedOrder = [...prevorder, id];
-
-			console.log(updatedOrder);
-			if (updatedOrder.length === data.filter(data => data.isBox).length) {
-				console.log(updatedOrder.length);
+			if (updatedOrder.length === data.filter((data) => data.isBox).length) {
 				setResetting(true);
 			}
 			return updatedOrder;
@@ -34,6 +31,8 @@ function App() {
 			prevdata.map((item) => (item.id === id ? { ...item, isClicked: !item.isClicked } : item))
 		);
 	}
+
+
 
 	useEffect(() => {
 		if (resetting) {
@@ -56,7 +55,7 @@ function App() {
 			// Clear the interval when the component unmounts or resetting is done
 			return () => clearInterval(timer);
 		}
-	}, [clickedOrder]);
+	}, [resetting]);
 	//every 5 sec pass the id which is tored in array to the prevdata and it will macth the id and make its clciked to fals
 
 	return (
