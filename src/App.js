@@ -32,8 +32,6 @@ function App() {
 		);
 	}
 
-
-
 	useEffect(() => {
 		if (resetting) {
 			let counter = 0;
@@ -53,7 +51,9 @@ function App() {
 				}
 			}, 300);
 			// Clear the interval when the component unmounts or resetting is done
-			return () => clearInterval(timer);
+			return () => {
+				clearInterval(timer)
+			};
 		}
 	}, [resetting]);
 	//every 5 sec pass the id which is tored in array to the prevdata and it will macth the id and make its clciked to fals
