@@ -1,8 +1,12 @@
-function Grid({data ,handleclick}) {
+function Grid({ data, handleclick }) {
     return (
-        data && data.map((val, index) => (
-            <div key={val.id} onClick={() => handleclick(val.id)} style={{ backgroundColor: val.isClicked ? 'green' : '' }} className='box'></div>
-        ))
+        <div className="boxContainer">
+            {data?.map((val) => (
+                val.isBox ?
+                    <div key={val.id} onClick={() => handleclick(val.id)} style={{ backgroundColor: val.isClicked ? 'green' : '' }} className='box'></div>
+                    : <span key={val.id}></span>
+            ))}
+        </div>
     )
 }
 
