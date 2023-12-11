@@ -20,16 +20,26 @@ function App() {
 
 	function handleclick(id) {
 		setclickedOrder((prevorder) => {
-			const updatedOrder = [...prevorder, id];
+			const updatedOrder = [...prevorder]
+			if (!updatedOrder.includes(id)) {
+				updatedOrder.push(id)
+			}
 			if (updatedOrder.length === data.filter((data) => data.isBox).length) {
 				setResetting(true);
 			}
 			return updatedOrder;
 		});
 
-		setdata((prevdata) =>
-			prevdata.map((item) => (item.id === id ? { ...item, isClicked: !item.isClicked } : item))
-		);
+		setdata((prevdata) => {
+			return prevdata.map((item) => {
+				if (!clickedOrder.includes(item.id)) {
+					return item.id === id ? { ...item, isClicked: !item.isClicked } : item  // if the id is not clicked second time then we find th id and make it green
+				}
+				else {
+					return item //else if is already green and addedin the clickedorder array we dnt do anything and leave as it is
+				}
+			})
+		})
 	}
 
 	useEffect(() => {
